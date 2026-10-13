@@ -26,9 +26,9 @@ jobs:
         with:
           version: 9
 
-      - name: Install Dependencies (Including Capacitor CLI)
+      - name: Install Dependencies (Including Capacitor CLI & Android Platform)
         run: |
-          pnpm add -D @capacitor/cli --ignore-workspace
+          pnpm add -D @capacitor/cli @capacitor/android --ignore-workspace
           pnpm install --no-frozen-lockfile
 
       - name: Build Core Package
