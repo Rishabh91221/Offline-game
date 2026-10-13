@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -41,15 +41,15 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '20'
+          java-version: '17'
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
 
       - name: Initialize & Sync Capacitor Android
         run: |
-          npx cap add android || true
-          npx cap sync android
+          pnpm exec cap add android || true
+          pnpm exec cap sync android
 
       - name: Assemble Debug APK with Gradle
         run: |
