@@ -46,6 +46,67 @@ jobs:
 
       - name: Initialize & Sync Capacitor
         run: |
+          pnpm --package=@capacitor/cli dlx cap add android || true
+          pnpm --package=@capacitor/cli dlx cap sync android
+
+      - name: Assemble Debug APK with Gradle
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ramayan-Offline-APK
+          path: My game/android/app/build/outputs/apk/debug/app-debug.apkname: Build Android APK
+
+on:
+  push:
+    branches: [ main, offline-game ]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: My game
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Core Package
+        run: pnpm --filter @ramayan/core build || true
+
+      - name: Export Static Web Bundle
+        run: pnpm --filter web build
+
+      - name: Setup Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Initialize & Sync Capacitor
+        run: |
           pnpm cap add android || true
           pnpm cap sync android
 
