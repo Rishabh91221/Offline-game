@@ -44,6 +44,9 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Accept Android SDK Licenses
+        run: yes | sdkmanager --licenses || true
+
       - name: Initialize & Sync Capacitor
         run: |
           npx cap add android || true
