@@ -46,8 +46,8 @@ jobs:
 
       - name: Initialize & Sync Capacitor
         run: |
-          pnpm dlx @capacitor/cli add android || true
-          pnpm dlx @capacitor/cli sync android
+          pnpm cap add android || true
+          pnpm cap sync android
 
       - name: Assemble Debug APK with Gradle
         run: |
