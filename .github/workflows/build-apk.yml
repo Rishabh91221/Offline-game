@@ -29,7 +29,7 @@ jobs:
       - name: Install Dependencies (Including Capacitor CLI)
         run: |
           pnpm add -D @capacitor/cli --ignore-workspace
-          pnpm install
+          pnpm install --no-frozen-lockfile
 
       - name: Build Core Package
         run: pnpm --filter @ramayan/core build || true
