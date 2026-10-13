@@ -1,0 +1,6 @@
+{
+  "appId": "com.ramayan.app",
+  "appName": "Ramayan: The Eternal Path",
+  "webDir": "apps/web/out",
+  "bundledWebRuntime": false
+}

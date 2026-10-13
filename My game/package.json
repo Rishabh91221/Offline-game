@@ -1,0 +1,13 @@
+{
+  "name": "ramayan-eternal-path",
+  "private": true,
+  "packageManager": "pnpm@10.28.0",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "dev": "pnpm --filter @ramayan/web dev",
+    "build": "pnpm --filter @ramayan/web build",
+    "start": "pnpm --filter @ramayan/web start",
+    "test": "pnpm --filter @ramayan/core test",
+    "typecheck": "pnpm -r typecheck"
+  }
+}
